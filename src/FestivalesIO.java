@@ -57,8 +57,8 @@ public class FestivalesIO {
             Estilo estilo = Estilo.valueOf(estiloNombre.toUpperCase());
             estilosMusica.add(estilo);
         }
-
-        return new Festival(nombre, lugar, fechaInicio, duracion, estilosMusica);
+        Festival festivall = new Festival(nombre, lugar, fechaInicio, duracion, estilosMusica);
+        return festivall;
     }
 
     private static String capitalizarNombre(String nombre) {

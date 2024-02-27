@@ -1,5 +1,6 @@
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.HashSet;
 import java.util.Locale;
@@ -62,8 +63,8 @@ public class Festival {
      */
     public Mes getMes() {
 
-        LocalDate fecha = this.fechaInicio;
-        return Mes.valueOf(fecha.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toUpperCase());
+        Month mes = fechaInicio.getMonth();
+        return Mes.valueOf(mes.name());
     }
 
     /**
@@ -74,7 +75,7 @@ public class Festival {
      */
     public boolean empiezaAntesQue(Festival otro) {
 
-        return this.fechaInicio.isBefore(otro.fechaInicio);
+        return this.fechaInicio.isBefore(otro.getFechaInicio());
         
     }
 
@@ -86,7 +87,7 @@ public class Festival {
      */
     public boolean empiezaDespuesQue(Festival otro) {
 
-        return this.fechaInicio.isAfter(otro.fechaInicio);
+        return this.fechaInicio.isAfter(otro.getFechaInicio());
         
     }
 
@@ -96,7 +97,7 @@ public class Festival {
      */
     public boolean haConcluido() {
 
-        LocalDate fechaFin = this.fechaInicio.plusDays(3);
+        LocalDate fechaFin = this.fechaInicio.plusDays(getDuracion());
         return fechaFin.isBefore(LocalDate.now());
     }
 
@@ -108,15 +109,15 @@ public class Festival {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.getNombre());
-        sb.append(this.getEstilos());
-        sb.append(this.getLugar());
-        sb.append(this.getFechaInicio());
+        sb.append(this.getNombre()).append("\n");
+        sb.append(this.getEstilos()).append("\n");
+        sb.append(this.getLugar()).append("\n");
+        sb.append(this.getFechaInicio()).append("\n");
+        sb.append("----------------------------------------\n");
         return sb.toString();
-        // SIN ACABAR
+
         
     }
-
     /**
      * Código para probar la clase Festival
      *
